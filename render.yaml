@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: your-nestjs-app
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        fromService:
+          type: web
+          name: nest_101
+          property: port
+    runtime: node
